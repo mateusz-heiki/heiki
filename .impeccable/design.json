@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-18T00:00:00Z",
+  "title": "Design System: [Your Project]",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "oklch(20.4% 0.002 286)",
+        "tonalRamp": [
+          "oklch(17.5% 0.002 286)",
+          "oklch(22% 0.002 286)",
+          "oklch(30% 0.003 286)",
+          "oklch(42% 0.003 286)",
+          "oklch(55% 0.003 286)",
+          "oklch(68% 0.003 286)",
+          "oklch(82% 0.003 286)",
+          "oklch(94% 0.002 286)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(96.5% 0.002 286)",
+        "tonalRamp": [
+          "oklch(20% 0.002 286)",
+          "oklch(35% 0.002 286)",
+          "oklch(50% 0.002 286)",
+          "oklch(65% 0.002 286)",
+          "oklch(78% 0.002 286)",
+          "oklch(88% 0.002 286)",
+          "oklch(94% 0.002 286)",
+          "oklch(98.7% 0.002 286)"
+        ]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Accent Persimmon",
+        "canonical": "oklch(53% 0.16 35)",
+        "tonalRamp": [
+          "oklch(22% 0.06 35)",
+          "oklch(32% 0.10 35)",
+          "oklch(42% 0.14 35)",
+          "oklch(53% 0.16 35)",
+          "oklch(64% 0.15 35)",
+          "oklch(75% 0.12 35)",
+          "oklch(86% 0.08 35)",
+          "oklch(96% 0.03 35)"
+        ]
+      },
+      "link": {
+        "role": "tertiary",
+        "displayName": "Link Blue",
+        "canonical": "oklch(50% 0.15 246)",
+        "tonalRamp": [
+          "oklch(20% 0.06 246)",
+          "oklch(30% 0.10 246)",
+          "oklch(40% 0.13 246)",
+          "oklch(50% 0.15 246)",
+          "oklch(62% 0.14 246)",
+          "oklch(74% 0.10 246)",
+          "oklch(86% 0.06 246)",
+          "oklch(96% 0.02 246)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines; one per page maximum. Negative tracking is mandatory at this size."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section openers, tile headlines."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-headlines, card titles, group labels."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All prose. Max line length 75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Captions, metadata, button text, nav links. Slight positive tracking."
+      }
+    },
+    "shadows": [
+      {
+        "name": "popover",
+        "value": "0 4px 16px oklch(20% 0 0 / 0.08), 0 1px 2px oklch(20% 0 0 / 0.04)",
+        "purpose": "Floating overlays: dropdowns, tooltips, menus."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 8px 24px oklch(20% 0 0 / 0.06)",
+        "purpose": "Optional, applied with translateY(-2px) to interactive cards on hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quint",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default easing for state transitions. Exponential ease-out, no bounce."
+      },
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Color shifts, hover state changes."
+      },
+      {
+        "name": "duration-base",
+        "value": "300ms",
+        "purpose": "Transform changes, overlay enter/exit."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "734px" },
+      { "name": "md", "value": "1068px" },
+      { "name": "lg", "value": "1440px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text Link CTA",
+      "kind": "button",
+      "refersTo": "link-cta",
+      "description": "The default homepage CTA. Apple-style. No background, no border.",
+      "html": "<a href=\"#\" class=\"ds-link-cta\">Learn more <span aria-hidden=\"true\">›</span></a>",
+      "css": ".ds-link-cta { color: #0066cc; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 1.0625rem; font-weight: 400; letter-spacing: -0.003em; text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.25em; transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-link-cta:hover { text-decoration: underline; text-underline-offset: 3px; } .ds-link-cta:focus-visible { outline: 3px solid rgba(0, 102, 204, 0.35); outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Pill Button (Primary)",
+      "kind": "button",
+      "refersTo": "button-pill",
+      "description": "Conversion-weight button. Used only for the single most important action on a page.",
+      "html": "<button type=\"button\" class=\"ds-btn-pill\">Buy</button>",
+      "css": ".ds-btn-pill { background: #0066cc; color: #fbfbfd; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.01em; padding: 12px 22px; border-radius: 980px; border: none; cursor: pointer; transition: background 150ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-pill:hover { background: #1d1d1f; } .ds-btn-pill:focus-visible { outline: 3px solid rgba(0, 102, 204, 0.35); outline-offset: 2px; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Text input with label above. Focus ring uses a colored shadow so layout never shifts.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__label\">Email</span><input type=\"email\" class=\"ds-input\" placeholder=\"you@example.com\"/></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; } .ds-field__label { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.01em; color: #1d1d1f; } .ds-input { background: transparent; border: 1px solid #d2d2d7; border-radius: 12px; padding: 12px 16px; font-size: 1.0625rem; color: #1d1d1f; font-family: inherit; transition: border-color 150ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-input::placeholder { color: #86868b; } .ds-input:focus { outline: none; border-color: #0066cc; box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.25); }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-top",
+      "description": "Sticky top bar. One weight, one color. No pills, no underlines.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__brand\" href=\"#\">Brand</a><ul class=\"ds-nav__list\"><li><a href=\"#\" class=\"ds-nav__link\">Product</a></li><li><a href=\"#\" class=\"ds-nav__link ds-nav__link--active\">Pricing</a></li><li><a href=\"#\" class=\"ds-nav__link\">About</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 44px; padding: 0 24px; background: #fbfbfd; border-bottom: 1px solid #d2d2d7; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; } .ds-nav__brand { color: #1d1d1f; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none; } .ds-nav__list { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; } .ds-nav__link { color: #1d1d1f; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.01em; text-decoration: none; transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-nav__link:hover { opacity: 0.6; } .ds-nav__link--active { color: #c44a2b; }"
+    },
+    {
+      "name": "Hero Tile (Light)",
+      "kind": "custom",
+      "refersTo": "tile-light",
+      "description": "The signature component. A full-bleed section that tells one story. Background is the boundary.",
+      "html": "<section class=\"ds-tile ds-tile--light\"><h2 class=\"ds-tile__headline\">One product. One story.</h2><p class=\"ds-tile__sub\">A tile is what you build. The page is what you stack.</p><div class=\"ds-tile__ctas\"><a href=\"#\" class=\"ds-link-cta\">Learn more <span aria-hidden=\"true\">›</span></a><a href=\"#\" class=\"ds-link-cta\">Buy <span aria-hidden=\"true\">›</span></a></div></section>",
+      "css": ".ds-tile { padding: 120px 24px; text-align: center; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; } .ds-tile--light { background: #f5f5f7; color: #1d1d1f; } .ds-tile__headline { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.018em; margin: 0 0 12px; max-width: 14ch; margin-left: auto; margin-right: auto; } .ds-tile__sub { font-size: 1.25rem; font-weight: 400; line-height: 1.4; color: #86868b; margin: 0 0 28px; max-width: 38ch; margin-left: auto; margin-right: auto; } .ds-tile__ctas { display: inline-flex; gap: 28px; flex-wrap: wrap; justify-content: center; }"
+    },
+    {
+      "name": "Hero Tile (Dark)",
+      "kind": "custom",
+      "refersTo": "tile-dark",
+      "description": "Dark counterpart. Per-Tile Theme Rule in action.",
+      "html": "<section class=\"ds-tile ds-tile--dark\"><h2 class=\"ds-tile__headline\">Dark when it earns it.</h2><p class=\"ds-tile__sub\">Theme is per tile, not per page.</p><div class=\"ds-tile__ctas\"><a href=\"#\" class=\"ds-link-cta ds-link-cta--inverse\">Learn more <span aria-hidden=\"true\">›</span></a></div></section>",
+      "css": ".ds-tile--dark { background: #161617; color: #fbfbfd; padding: 120px 24px; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; text-align: center; } .ds-link-cta--inverse { color: #2997ff; } .ds-link-cta--inverse:hover { text-decoration: underline; text-underline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Apple's restraint, on your asset budget.",
+    "overview": "This system pursues the discipline of apple.com without pretending to have Apple's photography, type foundry, or brand recognition. The compromises are deliberate: Inter stands in for SF Pro, generous spacing replaces hero renders as the carrier of premium feel, and one accent color does the work that Apple's product photography normally does. The aesthetic is image-first when an image earns its place, type-first when it doesn't. Each tile picks its own theme. Restraint is the default, but restraint is not the goal: confidence is.",
+    "keyCharacteristics": [
+      "One typeface family, two weights. Hierarchy through scale, not variety.",
+      "Paper-tinted neutrals, never #fff or #000.",
+      "Section rhythm is asymmetric: tiles vary in height, padding, theme.",
+      "Motion budget concentrated on detail pages; shell stays calm.",
+      "CTAs are text links by default; buttons appear only where conversion friction is real."
+    ],
+    "rules": [
+      { "name": "The Paper Rule", "body": "Pure white (#fff) and pure black (#000) are prohibited site-wide. Every neutral carries a faint warm-cool tint (chroma 0.002–0.005). Even one pure-white panel breaks the system.", "section": "colors" },
+      { "name": "The One Accent Rule", "body": "Persimmon (or your replacement) appears on ≤10% of any visible surface. If a page has more than one bright accent moment, demote all but the most important to Ink or Link Blue.", "section": "colors" },
+      { "name": "The Per-Tile Theme Rule", "body": "Theme is decided per tile, not per page. A homepage with three tiles can be light-light-dark, light-dark-light, or all-light. Tiles choose their theme by what photography or color the product needs, not by a global toggle.", "section": "colors" },
+      { "name": "The Negative Tracking Rule", "body": "Tracking is negative on every type role above 1.5rem. The larger the type, the more negative (display goes to -0.022em). Skipping this makes large Inter look like a free Google Font; applying it is the single highest-ROI typography move in this system.", "section": "typography" },
+      { "name": "The One Family Rule", "body": "Inter only. No serif display pairings, no mono accents, no script touches. Personality comes from weight and scale, not variety.", "section": "typography" },
+      { "name": "The Line Length Rule", "body": "Body text never exceeds 75ch. On large viewports, max-width: 36rem (≈576px) for prose blocks. Wider columns are unreadable regardless of font choice.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. No card has a resting shadow. Shadows exist as a response (hover, focus, floating overlay), never as decoration.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do vary tile heights and themes. A page of seven equal-height tiles is a catalog, not a story.",
+      "Do apply negative tracking to every type role above 1.5rem (-0.012em to -0.022em depending on size).",
+      "Do use Paper (#f5f5f7), never pure white.",
+      "Do prefer text-link CTAs over buttons on marketing surfaces.",
+      "Do keep the navigation bar at one weight, one color, no decoration.",
+      "Do spend the motion budget on detail pages; keep the shell calm.",
+      "Do let the background color be the tile boundary; no borders, no shadows on tiles."
+    ],
+    "donts": [
+      "Don't use #fff or #000 anywhere. Always Paper / Ink.",
+      "Don't apply background-clip: text to a gradient. Solid color, weight contrast for emphasis.",
+      "Don't put icon-headline-text cards in a grid of four or six. Each tile is one product story.",
+      "Don't use ambient shadows on resting elements. Flat by default.",
+      "Don't use border-left greater than 1px as a colored accent stripe on cards, alerts, or callouts.",
+      "Don't layer glassmorphism (backdrop-filter blur) decoratively. Reserve for genuinely-floating overlays, if at all.",
+      "Don't introduce a second typeface family. Inter is the system. Weight and scale carry hierarchy.",
+      "Don't use Accent Persimmon on more than 10% of a visible surface.",
+      "Don't scroll-jack. No pinned-and-stuck heroes.",
+      "Don't use em dashes in copy."
+    ]
+  }
+}
