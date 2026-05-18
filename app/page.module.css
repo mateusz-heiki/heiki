@@ -1,0 +1,188 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 48px;
+  border-bottom: 1px solid var(--color-rule-soft);
+  background: var(--color-paper);
+}
+
+.topbarMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbarActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-tile-mid);
+}
+
+.kickerDot {
+  color: var(--color-tile-faint);
+}
+
+.topbarLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.002em;
+  color: var(--color-ink);
+  transition: opacity var(--duration-fast) var(--ease-out-quint);
+}
+
+.topbarLink:hover {
+  opacity: 0.6;
+}
+
+.heroIntro {
+  padding: 64px 48px 36px;
+  max-width: 920px;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 4.6vw, 4.25rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.014em;
+  margin: 0;
+  color: var(--color-ink);
+  max-width: 18ch;
+}
+
+.heroLede {
+  margin: 18px 0 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  letter-spacing: -0.002em;
+  color: var(--color-tile-mid);
+  max-width: 48ch;
+}
+
+.threadRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  padding: 90px 48px 60px;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.threadKicker {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.threadTitle {
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.threadBody {
+  font-size: 1rem;
+  line-height: 1.55;
+  letter-spacing: -0.002em;
+  color: var(--color-tile-mid);
+  margin: 0;
+  max-width: 38ch;
+}
+
+.threadLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.002em;
+  color: var(--color-ink);
+  margin-top: 4px;
+  transition: gap var(--duration-fast) var(--ease-out-quint);
+}
+
+.threadLink:hover {
+  gap: 10px;
+}
+
+.threadChevron {
+  color: var(--color-tile-faint);
+  transition: color var(--duration-fast) var(--ease-out-quint);
+}
+
+.threadLink:hover .threadChevron {
+  color: var(--color-ink);
+}
+
+.footer {
+  padding: 48px;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.footerNote {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-tile-mid);
+  margin: 0;
+}
+
+.footerLink {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration-fast) var(--ease-out-quint);
+}
+
+.footerLink:hover {
+  text-decoration-color: var(--color-ink);
+}
+
+@media (max-width: 1100px) {
+  .threadRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
+@media (max-width: 833px) {
+  .topbar {
+    padding: 16px 24px 16px 60px;
+  }
+  .topbarActions {
+    gap: 16px;
+  }
+  .heroIntro {
+    padding: 48px 24px 24px;
+  }
+  .threadRow {
+    grid-template-columns: 1fr;
+    padding: 60px 24px 40px;
+  }
+  .footer {
+    padding: 32px 24px;
+  }
+}

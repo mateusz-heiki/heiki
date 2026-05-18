@@ -1,0 +1,30 @@
+.root {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.42em;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.word {
+  display: block;
+}
+
+.suffix {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-tile-faint);
+  align-self: flex-end;
+  transform: translateY(-2px);
+}

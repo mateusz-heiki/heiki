@@ -1,47 +1,54 @@
-<!-- SEED: written from apple.com as a benchmark, before project code exists. Re-run /impeccable document once there's a real codebase to capture actual tokens and components. -->
 ---
-name: "[Your Project]"
-description: "Apple-grade restraint, translated to a project without Apple's asset budget."
+name: "HEIKI HEIKI Pro"
+description: "Professional partner portal: B2B for distributors, retail chains, brand partners."
 colors:
   ink: "#1d1d1f"
   paper: "#f5f5f7"
   paper-pure: "#fbfbfd"
   tile-dark: "#161617"
   tile-mid: "#86868b"
+  tile-faint: "#a1a1a6"
   rule: "#d2d2d7"
+  rule-soft: "#e8e8ed"
   link: "#0066cc"
   accent: "#c44a2b"
 typography:
   display:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontFamily: "\"Söhne\", \"Inter Tight\", \"Inter\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
     fontSize: "clamp(2.75rem, 5.5vw, 5.5rem)"
     fontWeight: 600
     lineHeight: 1.05
-    letterSpacing: "-0.022em"
+    letterSpacing: "-0.014em"
   headline:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontFamily: "\"Söhne\", \"Inter Tight\", \"Inter\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
     fontSize: "clamp(2rem, 3.5vw, 3.25rem)"
     fontWeight: 600
     lineHeight: 1.08
-    letterSpacing: "-0.018em"
+    letterSpacing: "-0.012em"
   title:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontFamily: "\"Söhne\", \"Inter Tight\", \"Inter\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
     fontSize: "1.5rem"
     fontWeight: 500
     lineHeight: 1.2
-    letterSpacing: "-0.012em"
+    letterSpacing: "-0.008em"
   body:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontFamily: "\"Söhne\", \"Inter Tight\", \"Inter\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.5
-    letterSpacing: "-0.003em"
+    letterSpacing: "-0.002em"
+  body-nav:
+    fontFamily: "\"Söhne\", \"Inter Tight\", \"Inter\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "-0.002em"
   label:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
-    fontSize: "0.8125rem"
+    fontFamily: "\"Söhne\", \"Inter Tight\", \"Inter\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    fontSize: "0.75rem"
     fontWeight: 500
     lineHeight: 1.3
-    letterSpacing: "0.01em"
+    letterSpacing: "0.04em"
 rounded:
   sm: "6px"
   md: "12px"
@@ -54,6 +61,11 @@ spacing:
   lg: "48px"
   xl: "90px"
   xxl: "120px"
+  sidebar-width: "264px"
+  sidebar-pad-y: "32px"
+  sidebar-pad-x: "20px"
+  tree-indent: "16px"
+  tree-row-gap: "4px"
 components:
   link-cta:
     textColor: "{colors.link}"
@@ -77,17 +89,19 @@ components:
     padding: "120px 24px"
 ---
 
-# Design System: [Your Project]
+# Design System: HEIKI HEIKI Pro
 
 ## 1. Overview
 
-**Creative North Star: "Apple's restraint, on your asset budget."**
+**Creative North Star: "A pharmacy archive that knows it's also a brand."**
 
-This system pursues the discipline of apple.com without pretending to have Apple's photography, type foundry, or brand recognition. The compromises are deliberate: Inter stands in for SF Pro (closest open-source geometry, available on every CDN), generous spacing replaces hero renders as the carrier of premium feel, and one accent color does the work that Apple's product photography normally does.
+HEIKI HEIKI Pro is a partner portal: distributors, retail chains, brand collaborators come here for product specs, ingredient research, brand reference, and press assets. The audience is professional, not consumer, so the surface earns its restraint differently than a DTC site would: there is real information to deliver, and the design has to make it findable without making it boring.
 
-The aesthetic is image-first when an image earns its place, type-first when it doesn't. Each tile picks its own theme. Restraint is the default, but restraint is not the goal: confidence is. A page that says one thing well beats a page that says five things competently.
+The chassis is a persistent left-sidebar category tree (logo top-left, tree below, indent rhythm reading as a quiet table of contents) on a paper canvas to the right. The homepage opens with a floating gallery as the "visual world" introduction: tiles drift on mouse-parallax, no hard grid, signaling brand atmosphere before the partner drills into specs. Deeper pages take a more structured posture (long-form, anchored, dense where the content earns it).
 
-What this system rejects: card grids of identical icons-and-headings, hero-metric blocks, gradient text, glassmorphism, scroll-jacked parallax, gray-on-color text, anything that would make a reader say "AI made that."
+The discipline is Apple's: one type family with negative tracking, paper-tinted neutrals (never pure white), asymmetric tile rhythm, motion only where earned. The layout is not Apple's — apple.com has no sidebar. The reference anchors here are Aesop's wholesale portal, Helmut Lang's archive, and Bottega Veneta's press room: brand-grade visuals on a real navigation chassis.
+
+What this system rejects: card grids of identical icons-and-headings, hero-metric blocks, gradient text, glassmorphism, scroll-jacked parallax, gray-on-color text, dashboard-aesthetic tropes, and anything that would make a partner say "this was put together quickly."
 
 **Key Characteristics:**
 - One typeface family, two weights (regular and semibold). Hierarchy through scale, not variety.
@@ -125,24 +139,29 @@ A near-black on warm paper. One chromatic accent, used sparingly. Tiles flip lig
 
 ## 3. Typography
 
-**Display Font:** Inter (with `-apple-system`, `BlinkMacSystemFont`, `system-ui`, `sans-serif` fallback)
-**Body Font:** Inter (same stack)
+**Display Font:** Söhne (Klim Type Foundry), with `Inter Tight` / `Inter` / `-apple-system` / `BlinkMacSystemFont` / `system-ui` / `sans-serif` as the dev fallback stack.
+**Body Font:** Söhne (same stack).
 
-**Character:** One family, three weights. SF Pro is the spiritual reference (you can't license it); Inter is the working substitute. The fallback to `-apple-system` means visitors on Apple devices automatically render in real SF Pro, which is a free upgrade in the right direction.
+**Character:** One family throughout. Söhne is the production typeface (commercial license required from Klim before launch); Inter Tight and Inter are the unlicensed dev fallbacks that render until the Söhne files are deployed. The order matters: Inter Tight is closer to Söhne's metrics than Inter, so the dev preview reads correctly. Söhne carries Apple-tier discipline without being SF Pro or Inter; it has been adopted by Bloomberg, Mailchimp, and a long list of premium brand systems.
+
+Söhne's metrics are tighter than Inter by design, so the negative tracking values are smaller than they'd be for Inter alone. Don't crank tracking further when Söhne ships.
 
 ### Hierarchy
-- **Display** (semibold 600, `clamp(2.75rem, 5.5vw, 5.5rem)`, 1.05 line-height, -0.022em tracking): Hero headlines, one per page maximum. Negative tracking is mandatory at this size; without it, large Inter looks loose and cheap.
-- **Headline** (semibold 600, `clamp(2rem, 3.5vw, 3.25rem)`, 1.08, -0.018em): Section openers, tile headlines.
-- **Title** (medium 500, 1.5rem, 1.2, -0.012em): Sub-headlines, card titles, group labels.
-- **Body** (regular 400, 1.0625rem / 17px, 1.5, -0.003em): All prose. Cap line length at 65–75 characters; this typically means `max-width: 36rem` on body content.
-- **Label** (medium 500, 0.8125rem / 13px, 1.3, +0.01em tracking): Captions, metadata, button text, nav links.
+- **Display** (semibold 600, `clamp(2.75rem, 5.5vw, 5.5rem)`, 1.05 line-height, -0.014em tracking): Hero headlines, one per page maximum.
+- **Headline** (semibold 600, `clamp(2rem, 3.5vw, 3.25rem)`, 1.08, -0.012em): Section openers, tile headlines.
+- **Title** (medium 500, 1.5rem, 1.2, -0.008em): Sub-headlines, card titles, group labels.
+- **Body** (regular 400, 1.0625rem / 17px, 1.5, -0.002em): All prose. Cap line length at 65–75 characters (`max-width: 36rem`).
+- **Body Nav** (regular 400, 0.9375rem / 15px, 1.4, -0.002em): Sidebar tree items. One notch denser than Body to give the navigation column more rhythm without breaking family voice.
+- **Label** (medium 500, 0.75rem / 12px, 1.3, +0.04em tracking): Section labels in the sidebar, captions, metadata. Use uppercase for sidebar section labels only.
 
 ### Named Rules
-**The Negative Tracking Rule.** Tracking is negative on every type role above 1.5rem. The larger the type, the more negative (display goes to -0.022em). Skipping this makes large Inter look like a free Google Font; applying it is the single highest-ROI typography move in this system.
+**The Negative Tracking Rule.** Tracking is negative on every type role above 1.5rem. Values are calibrated for Söhne; if Söhne is unavailable and Inter is rendering, the tracking is approximately right but the type will read slightly looser. Ship Söhne before launch.
 
-**The One Family Rule.** Inter only. No serif display pairings, no mono accents, no script touches. Personality comes from weight and scale, not variety.
+**The One Family Rule.** Söhne only. No serif display pairings, no mono accents, no script touches. Personality comes from weight and scale, not variety.
 
 **The Line Length Rule.** Body text never exceeds 75ch. On large viewports, `max-width: 36rem` (≈576px) for prose blocks. Wider columns are unreadable regardless of font choice.
+
+**The Inter Reflex Rule.** Inter is the dev fallback only. Never the production typeface. Inter has saturated AI-generated landing pages to the point of being the default reflex; using it as the final type voice signals "no font decision was made." Söhne, by contrast, costs money and time. The cost is the discipline.
 
 ## 4. Elevation
 
@@ -192,24 +211,48 @@ For times you do need a card (settings list, dashboard panel):
 - **Focus:** Border shifts to Link Blue, plus a 3px Link Blue glow at 25% opacity (`box-shadow: 0 0 0 3px oklch(50% 0.15 246 / 0.25)`). No border-width changes; the layout must not shift.
 - **Error:** Border shifts to Accent Persimmon. Error message appears below the field in Tile Mid, label-sized.
 
-### Navigation
-- **Style:** Sticky top bar, 44px tall, Paper Pure background with a 1px Rule bottom border.
-- **Typography:** Label (13px medium), one weight throughout.
-- **Default / Hover / Active:** Default is Ink, hover adds 60% opacity, active uses Accent. No pills, no underlines.
-- **Mobile:** Collapses to a hamburger that opens a full-page sheet, not a dropdown. Sheet uses Tile Dark background, Paper Pure text.
+### Navigation — Left Sidebar (signature)
+
+The persistent shell. 264px wide on desktop, scrolls independently of the main canvas.
+
+- **Background:** Paper Pure on a Paper main canvas. The bar of differentiation is one shade, no shadow.
+- **Right edge:** 1px Rule-Soft (`#e8e8ed`). Hairline, not a heavy divide.
+- **Padding:** 32px vertical, 20px horizontal.
+- **Logo:** Top-left, 32px tall, Ink color, 24px below the top edge.
+- **Section labels:** Label typography (12px medium, +0.04em tracking, uppercase), Tile Faint color. 32px above the first row of the section, 12px below the label.
+- **Tree row:** Body Nav typography (15px regular). 8px vertical padding, 0 horizontal (alignment is via indent, not padding). 4px between rows.
+- **Indent:** 16px per level. Maximum two levels deep.
+- **Default state:** Ink color, no background, no border.
+- **Hover state:** Color shifts to Tile Mid (`#86868b`). 150ms ease-out. No background pill.
+- **Active state:** Ink color. A 2px Accent dot to the left of the row (in the indent gutter), aligned to the row's baseline. The accent dot is the only chromatic touch in the sidebar.
+- **Expand indicator:** A 9px chevron on the right of any expandable row. Rotates 90° when open. Tile Faint color.
+- **Mobile (<834px):** Sidebar collapses to a hamburger in the top-left. Opens a full-height sheet from the left, slides in over the canvas, no backdrop blur (Per-Tile Theme Rule respected by giving the sheet a Paper Pure background, not a transparent overlay).
+
+### Navigation — Top Bar (when present)
+Not used on this portal's primary shell. Reserved for future per-section toolbars (filter, search, view-toggle) that anchor 60px under the top edge of the main canvas.
 
 ### Tile (signature component)
 
-The defining component. A `<section>` with:
-- Full viewport width, generous vertical padding (`xxl` desktop, `lg` mobile)
+The defining component for content tiles inside the main canvas. A `<section>` with:
+- Full canvas width (excludes sidebar), generous vertical padding (`xxl` desktop, `lg` mobile)
 - One headline (Display or Headline scale)
 - One sub-headline (Title scale, Tile Mid color)
 - One or two text-link CTAs OR one pill button
 - An image OR a video OR a chromatic background — never all three
-- Centered alignment for hero tiles, top-aligned for content tiles
+- Centered alignment for hero tiles, left-aligned for content tiles in the portal context (the sidebar already anchors the left edge of the page)
 - No surrounding container, no card border, no shadow
 
-Apple's homepage is six to eight of these stacked. So is this system.
+### Floating Gallery (homepage signature)
+
+The homepage hero. A contained viewport (~70vh on desktop, full canvas width) populated with 15–20 image tiles in a clustered freeform layout.
+
+- **No grid.** Tiles overlap and breathe, varied sizes (200–420px wide), portrait and square ratios mixed.
+- **Continuous gentle drift:** each tile floats on a slow individual sine wave (period 8–14s, amplitude 6–14px). Phases offset so the field never appears to pulse.
+- **Mouse-parallax:** each tile has a depth value (0.15–1.0). Mouse offset is multiplied by depth and applied as a translate. Hero tiles drift more, background tiles drift less.
+- **Hover:** tile under cursor lifts 4px and casts a Popover shadow. Other tiles fade to 65% opacity.
+- **No drag, no zoom, no scroll-hijack.** The lighter cousin of Cosmos.so's canvas: alive, but never blocking the scroll.
+- **Reduced motion:** disable the float and the parallax. Static layout with hover-lift only.
+- **Imagery rotation:** swap content per visit if practical (different seed → different photograph clustering). Otherwise hand-curate the set as part of the brand surface.
 
 ## 6. Do's and Don'ts
 

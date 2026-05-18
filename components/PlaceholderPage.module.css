@@ -1,0 +1,104 @@
+.page {
+  padding: 90px 48px 120px;
+  max-width: 920px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8125rem;
+  letter-spacing: -0.002em;
+  color: var(--color-tile-mid);
+  margin-bottom: 48px;
+}
+
+.crumbHome {
+  color: var(--color-tile-mid);
+  transition: color var(--duration-fast) var(--ease-out-quint);
+}
+
+.crumbHome:hover {
+  color: var(--color-ink);
+}
+
+.crumbItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.crumbItem:last-child {
+  color: var(--color-ink);
+}
+
+.crumbSep {
+  color: var(--color-tile-faint);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kicker {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.014em;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.desc {
+  margin: 8px 0 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  letter-spacing: -0.002em;
+  color: var(--color-tile-mid);
+  max-width: 48ch;
+}
+
+.statusCard {
+  margin-top: 72px;
+  padding: 28px 32px;
+  background: var(--color-paper-pure);
+  border: 1px solid var(--color-rule-soft);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 540px;
+}
+
+.statusKicker {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-tile-mid);
+}
+
+.statusBody {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  letter-spacing: -0.002em;
+  color: var(--color-ink);
+}
+
+@media (max-width: 833px) {
+  .page {
+    padding: 72px 24px 90px;
+  }
+}
