@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+# Dane wyjściowe i cache (zachowujemy katalog, ale nie jego zawartość)
+data/*
+!data/.gitkeep
+# Sekrety Google
+google-service-account.json
+*.har

@@ -1,0 +1,31 @@
+{
+  "name": "rossmann-availability",
+  "version": "0.1.0",
+  "description": "Narzędzie do pobierania stanów dostępności produktów marki Heiki Heiki w drogeriach Rossmann Polska.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "rossmann": "tsx src/index.ts",
+    "discover:products": "tsx src/index.ts discover-products",
+    "discover:shops": "tsx src/index.ts discover-shops",
+    "capture": "tsx src/index.ts capture",
+    "scan": "tsx src/index.ts scan",
+    "typecheck": "tsc --noEmit",
+    "browsers": "playwright install chromium",
+    "postinstall": "playwright install chromium || echo 'Pobierz Chromium ręcznie: npm run browsers'"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "googleapis": "^144.0.0",
+    "playwright": "^1.48.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
