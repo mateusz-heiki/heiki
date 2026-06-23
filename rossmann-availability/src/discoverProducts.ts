@@ -49,16 +49,18 @@ async function scrapeProductsFromDom(page: Page): Promise<Product[]> {
     (links, baseUrl) => {
       const seen = new Set<string>();
       const items: { id: string; name: string; url: string; price?: string }[] = [];
+      // Strona produktu: ".../Produkt/<Kategoria>/<slug>,<idProduktu>,<idKategorii>"
+      const productRe = /\/Produkt\/.+,(\d+),(\d+)(?:[/?#]|$)/i;
       for (const a of links as HTMLAnchorElement[]) {
         const href = a.href;
-        if (!href || !href.includes("/produkty/")) continue;
-        // Próbujemy wyłuskać id z końcówki sluga, np. /produkty/...,123456
-        const m = href.match(/(\d{4,})/);
-        const id = m ? m[1]! : href;
+        const m = href.match(productRe);
+        if (!m) continue; // pomijamy listingi/kategorie/inne linki
+        const id = m[1]!; // pierwsza liczba po przecinku = id produktu
         if (seen.has(id)) continue;
         seen.add(id);
         const card = a.closest("article, li, div") ?? a;
         const name =
+          (a.getAttribute("title") ?? "").trim() ||
           (a.textContent ?? "").trim() ||
           (card.querySelector("h3, h2, [class*=name]")?.textContent ?? "").trim();
         const price = (

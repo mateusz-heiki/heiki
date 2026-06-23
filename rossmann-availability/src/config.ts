@@ -17,7 +17,7 @@ export const config = {
   baseUrl: process.env.ROSSMANN_BASE_URL ?? "https://www.rossmann.pl",
   brandUrl:
     process.env.ROSSMANN_BRAND_URL ??
-    "https://www.rossmann.pl/szukaj?Search=heiki%20heiki",
+    "https://www.rossmann.pl/marka/HEIKI-HEIKI,116688",
   brandName: "Heiki Heiki",
 
   headless: bool(process.env.HEADLESS, true),
@@ -65,8 +65,12 @@ export const config = {
    * listingu marki (gdy nie uda się przechwycić czystego JSON).
    */
   selectors: {
-    productCard: '[data-testid="product-tile"], .product-tile, article a[href*="/produkty/"]',
-    productLink: 'a[href*="/produkty/"]',
+    // Linki do KART PRODUKTÓW. Na rossmann.pl strona produktu ma ścieżkę
+    // "/Produkt/..." (liczba pojedyncza, z dużej litery) i kończy się
+    // wzorcem ",<idProduktu>,<idKategorii>". Listingi/kategorie mają
+    // "/produkty/..." — i tych NIE łapiemy.
+    productCard: '[data-testid="product-tile"], .product-tile, article a[href*="/Produkt/"]',
+    productLink: 'a[href*="/Produkt/"]',
     productName: '[data-testid="product-name"], .product-tile__name, h3',
     productPrice: '[data-testid="price"], .price, .product-tile__price',
     cookieAccept:
