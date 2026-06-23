@@ -116,6 +116,47 @@ Skan podmienia te literały na id każdego produktu i każdego sklepu z list
 Kolumny: data sprawdzenia, produkt, EAN, id produktu, miasto, drogeria, ulica,
 id sklepu, status (`AVAILABLE` / `LOW` / `UNAVAILABLE` / `UNKNOWN`), status surowy.
 
+## Raport zmian i historia
+
+Każdy skan automatycznie porównuje się z poprzednim:
+
+- **`data/changes.csv` / `.json`** — tylko zmiany (np. produkt pojawił się
+  w danej drogerii, zniknął, spadł do ostatnich sztuk).
+- Zakładka **„Zmiany"** w Google Sheets — to samo, nadpisywane co skan.
+- Zakładka **„Historia"** w Google Sheets — dopisywany co skan wiersz
+  podsumowania per produkt (ile sklepów dostępny / niski / brak), więc widać
+  trend w czasie.
+
+Poprzedni stan brany jest z lokalnego `data/availability.json`, a gdy go nie ma
+(np. w CI) — odczytywany z arkusza, zanim zostanie nadpisany. Sam raport bez
+ponownego skanu: `npm run rossmann report`.
+
+Typy zmian: `NEW_AVAILABLE`, `RESTOCKED`, `LOW_STOCK`, `OUT_OF_STOCK`,
+`STATUS_CHANGED`, `NEW_ENTRY`.
+
+## Harmonogram (GitHub Actions)
+
+W repo jest workflow `.github/workflows/rossmann-scan.yml`, który uruchamia
+pełny skan **codziennie o 06:00 UTC** (oraz ręcznie z zakładki *Actions →
+Run workflow*). Wyniki trafiają do Google Sheets, a CSV/JSON jako artefakt.
+
+Ustaw w **Settings → Secrets and variables → Actions**:
+
+**Secrets:**
+| Nazwa | Wartość |
+| --- | --- |
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | cała zawartość pliku konta serwisowego (JSON) |
+| `GOOGLE_SHEET_ID` | ID arkusza |
+| `ROSSMANN_BRAND_URL` | URL listingu marki |
+| `AVAILABILITY_TEMPLATE_JSON` | zawartość `data/availability-request.json` po kalibracji |
+
+**Variables (opcjonalnie):** `CONCURRENCY`, `REQUEST_DELAY_MS`, `GOOGLE_SHEET_TAB`.
+
+> `AVAILABILITY_TEMPLATE_JSON` trzymamy jako *secret*, bo nagrane nagłówki mogą
+> zawierać ciasteczka sesji. Po pierwszej lokalnej kalibracji (`capture`) wklej
+> tam zawartość pliku. Produkty i listę sklepów workflow wykrywa sam przy każdym
+> uruchomieniu.
+
 ## Dostrajanie / rozwiązywanie problemów
 
 - **Pusta lista produktów/sklepów** → uruchom z `HEADLESS=false`, sprawdź

@@ -1,12 +1,37 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { config } from "./config.js";
-import { log } from "./util.js";
+import { log, readJson } from "./util.js";
 import { discoverProducts } from "./discoverProducts.js";
 import { discoverShops } from "./discoverShops.js";
 import { capture } from "./capture.js";
 import { checkAvailability } from "./checkAvailability.js";
-import { writeToSheets, sheetsConfigured } from "./sheets.js";
+import {
+  writeToSheets,
+  sheetsConfigured,
+  readPreviousFromSheets,
+  appendHistory,
+  writeChanges,
+} from "./sheets.js";
+import { diffRecords, buildHistory, writeChangeReport } from "./report.js";
+import type { AvailabilityRecord } from "./types.js";
+
+/** Liczy zmiany i zapisuje raport/historię lokalnie oraz do Google Sheets. */
+async function publishResults(
+  records: AvailabilityRecord[],
+  previous: AvailabilityRecord[],
+  toSheets: boolean,
+): Promise<void> {
+  const changes = diffRecords(records, previous);
+  writeChangeReport(changes);
+  if (toSheets && sheetsConfigured()) {
+    await writeToSheets(records);
+    await appendHistory(buildHistory(records));
+    await writeChanges(changes);
+  } else if (toSheets) {
+    log.warn("Pomijam Google Sheets — uzupełnij GOOGLE_SHEET_ID i plik konta serwisowego.");
+  }
+}
 
 const program = new Command();
 
@@ -45,18 +70,32 @@ program
   .option("--limit-shops <n>", "ogranicz liczbę sklepów (test)", Number)
   .option("--no-sheets", "nie zapisuj do Google Sheets (tylko pliki CSV/JSON)")
   .action(async (opts: { limitProducts?: number; limitShops?: number; sheets: boolean }) => {
+    // Poprzedni snapshot: najpierw lokalny plik, w razie braku — odczyt z arkusza
+    // (przydatne w CI). Czytamy ZANIM skan nadpisze dane.
+    let previous = readJson<AvailabilityRecord[]>(config.files.resultsJson) ?? [];
+    if (previous.length === 0 && opts.sheets && sheetsConfigured()) {
+      previous = await readPreviousFromSheets();
+    }
     const records = await checkAvailability({
       limitProducts: opts.limitProducts,
       limitShops: opts.limitShops,
     });
     if (records.length === 0) return;
-    if (opts.sheets) {
-      if (sheetsConfigured()) await writeToSheets(records);
-      else
-        log.warn(
-          "Pomijam Google Sheets — uzupełnij GOOGLE_SHEET_ID i plik konta serwisowego.",
-        );
+    await publishResults(records, previous, opts.sheets);
+  });
+
+program
+  .command("report")
+  .description("Liczy zmiany między ostatnim a poprzednim skanem (bez ponownego skanu)")
+  .action(async () => {
+    const current = readJson<AvailabilityRecord[]>(config.files.resultsJson) ?? [];
+    if (current.length === 0) {
+      log.error("Brak wyników skanu (data/availability.json). Uruchom najpierw: scan");
+      return;
     }
+    const previous = sheetsConfigured() ? await readPreviousFromSheets() : [];
+    const changes = diffRecords(current, previous);
+    writeChangeReport(changes);
   });
 
 program
@@ -70,8 +109,9 @@ program
     log.info("Krok 3/4: nagranie zapytania (interaktywne)");
     await capture();
     log.info("Krok 4/4: skan");
+    const previous = readJson<AvailabilityRecord[]>(config.files.resultsJson) ?? [];
     const records = await checkAvailability();
-    if (records.length && sheetsConfigured()) await writeToSheets(records);
+    if (records.length) await publishResults(records, previous, true);
   });
 
 program.parseAsync(process.argv).catch((err) => {

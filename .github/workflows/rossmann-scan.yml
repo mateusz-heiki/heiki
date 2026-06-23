@@ -1,0 +1,71 @@
+name: Rossmann – skan dostępności Heiki Heiki
+
+# Codzienny automatyczny skan + możliwość ręcznego uruchomienia.
+on:
+  schedule:
+    - cron: "0 6 * * *" # 06:00 UTC (08:00 czasu PL latem) codziennie
+  workflow_dispatch: {}
+
+concurrency:
+  group: rossmann-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: rossmann-availability
+    env:
+      HEADLESS: "true"
+      ROSSMANN_BRAND_URL: ${{ secrets.ROSSMANN_BRAND_URL }}
+      CONCURRENCY: ${{ vars.CONCURRENCY || '4' }}
+      REQUEST_DELAY_MS: ${{ vars.REQUEST_DELAY_MS || '350' }}
+      GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+      GOOGLE_SHEET_TAB: ${{ vars.GOOGLE_SHEET_TAB || 'Dostępność' }}
+      GOOGLE_SERVICE_ACCOUNT_FILE: ./google-service-account.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: rossmann-availability/package-lock.json
+
+      - name: Instalacja zależności
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+
+      - name: Instalacja Chromium (Playwright)
+        run: npx playwright install --with-deps chromium
+
+      - name: Konfiguracja sekretów Google i szablonu zapytania
+        run: |
+          printf '%s' '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > google-service-account.json
+          mkdir -p data
+          printf '%s' '${{ secrets.AVAILABILITY_TEMPLATE_JSON }}' > data/availability-request.json
+
+      - name: Wykryj produkty
+        run: npm run discover:products
+
+      - name: Pobierz listę drogerii
+        run: npm run discover:shops
+
+      - name: Skan dostępności + zapis do Google Sheets
+        run: npm run scan
+
+      - name: Zapisz wyniki jako artefakt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rossmann-availability-${{ github.run_id }}
+          path: |
+            rossmann-availability/data/availability.csv
+            rossmann-availability/data/availability.json
+            rossmann-availability/data/changes.csv
+            rossmann-availability/data/changes.json
+          if-no-files-found: warn
+          retention-days: 30
